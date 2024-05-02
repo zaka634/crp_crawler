@@ -21,7 +21,10 @@ DIR_PREFIX = '/home/user/data'
 
 
 def is_crp(case_number):
-    res = requests.get(f"https://www.casestatusext.com/cases/{case_number}")
+    res = requests.get(
+        f"https://www.casestatusext.com/cases/{case_number}",
+        headers={'User-Agent': 'Custom'},
+    )
     soup = BeautifulSoup(res.content, "html.parser")
 
     crp_section = soup.select("ul.ant-timeline.ant-timeline-label.css-1ij74fp")[0]
@@ -33,7 +36,10 @@ def is_crp(case_number):
 
 
 def get_case_numbers():
-    res = requests.get("https://www.casestatusext.com/approvals/I-485/MSC-LB")
+    res = requests.get(
+        "https://www.casestatusext.com/approvals/I-485/MSC-LB",
+        headers={'User-Agent': 'Custom'},
+    )
     soup = BeautifulSoup(res.content, "html.parser")
     section = soup.findAll("script")[-1]
     x = section.string.strip()
