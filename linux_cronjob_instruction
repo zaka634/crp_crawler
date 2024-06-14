@@ -1,0 +1,6 @@
+1. type crontab -e
+2. put this :
+   0 * * * * /home/opc/crp_to_approval/crp_crawler.py >> /home/opc/crp_to_approval/log/logfile.log 2>&1
+   redirect stdout and stderr into the log file.
+3. type this to verify it : crontab -l
+
